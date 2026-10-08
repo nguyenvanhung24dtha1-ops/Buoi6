@@ -1,0 +1,37 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace WinFormsApp4
+{
+    [Table("Student")]
+    public class Student
+    {
+        [Key]
+        public string MaSV { get; set; }
+
+        public string HoTen { get; set; }
+        public DateTime? NgaySinh { get; set; }
+        public string GioiTinh { get; set; }
+        public string MaLop { get; set; }
+
+        // Bổ sung thuộc tính Id trỏ tới MaSV để xử lý lỗi CS1061 ở Form2.cs
+        [NotMapped]
+        public string Id
+        {
+            get => MaSV;
+            set => MaSV = value;
+        }
+
+        // Giữ lại các thuộc tính cho Form1.cs
+        [NotMapped]
+        public string FullName
+        {
+            get => HoTen;
+            set => HoTen = value;
+        }
+
+        [NotMapped]
+        public double? Grade { get; set; }
+    }
+}
